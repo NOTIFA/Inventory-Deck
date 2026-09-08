@@ -1,0 +1,41 @@
+# Oracle Ledger — Task 2 API + Task 3 Frontend
+
+
+```
+project/
+├── backend/    Task 2 — Express REST API (products CRUD)
+└── frontend/   Task 3 — vanilla HTML/CSS/JS UI that calls the API
+```
+
+## Run it
+
+**1. Start the API** (in one terminal):
+
+```bash
+cd backend
+npm install
+npm start
+```
+
+Confirm it printed `Server running on http://localhost:3000`.
+
+**2. Serve the frontend** (in a second terminal — don't just double-click `index.html`, `fetch` needs it served over http):
+
+```bash
+cd frontend
+python3 -m http.server 5500
+```
+
+Then open `http://localhost:5500` in your browser.
+
+If you don't have Python, any static server works — e.g. VS Code's "Live Server" extension, or `npx serve`.
+
+## What you'll see
+
+- A **connection dot** in the header that turns green once it reaches the API.
+- A **New entry** ticket on the left — add a product's name, price, and quantity; it POSTs to the API and the ledger refreshes.
+- A **ledger table** on the right showing everything fetched from `GET /api/products`, with inline **Edit** (PUT) and **Delete** (DELETE) buttons per row.
+
+## Note on CORS (Cross-Origin Resource Sharing)
+
+The frontend and API run on different ports (5500 vs 3000), so the browser treats them as different origins. `backend/server.js` includes a small CORS middleware (`Access-Control-Allow-Origin: *`) so the browser's `fetch` calls are allowed through. In a real deployment you'd restrict that to your actual frontend's domain instead of `*`.
