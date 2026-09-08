@@ -11,9 +11,11 @@
   --red: #d1495b;
 }
 
-* { box-sizing: border-box; }
+* 
+{ box-sizing: border-box; }
 
-html { color-scheme: dark; }
+html 
+{ color-scheme: dark; }
 
 body {
   margin: 0;
