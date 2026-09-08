@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Oracle — Inventory Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-mark">Supply Ledger</span>
+      <span class="brand-sub">Inventory desk · products API</span>
+    </div>
+    <div class="conn" id="connStatus">
+      <span class="conn-dot" id="connDot"></span>
+      <span id="connLabel">Checking connection…</span>
+    </div>
+  </header>
+
+  <main class="desk">
+
+    <section class="ticket" aria-labelledby="entry-heading">
+      <h2 id="entry-heading">New entry</h2>
+      <p class="ticket-hint">Add a product to the ledger.</p>
+
+      <form id="productForm">
+        <label for="fName">Item name</label>
+        <input type="text" id="fName" name="name" placeholder="e.g. Desk Lamp" required>
+
+        <div class="field-row">
+          <div>
+            <label for="fPrice">Price (USD)</label>
+            <input type="number" id="fPrice" name="price" min="0" step="0.01" placeholder="0.00" required>
+          </div>
+          <div>
+            <label for="fQuantity">Quantity</label>
+            <input type="number" id="fQuantity" name="quantity" min="0" step="1" placeholder="0" required>
+          </div>
+        </div>
+
+        <button type="submit" id="submitBtn">Add to ledger</button>
+        <p class="form-msg" id="formMsg" role="status"></p>
+      </form>
+    </section>
+
+    <section class="ledger" aria-labelledby="ledger-heading">
+      <div class="ledger-head">
+        <h2 id="ledger-heading">Current stock</h2>
+        <button id="refreshBtn" class="ghost-btn" type="button">Refresh</button>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Item</th>
+              <th scope="col" class="num">Price</th>
+              <th scope="col" class="num">Qty</th>
+              <th scope="col" class="actions-col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="productRows">
+            <tr class="state-row"><td colspan="5">Loading ledger…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    Talking to <code id="apiBaseLabel">http://localhost:3000</code> — start the API server first.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
